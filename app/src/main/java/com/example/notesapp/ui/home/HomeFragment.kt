@@ -6,25 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notesapp.Note
+import androidx.room.Room
 import com.example.notesapp.NoteAdapter
+import com.example.notesapp.R
+import com.example.notesapp.database.NoteDao
+import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.databinding.FragmentHomeBinding
+import com.example.notesapp.ui.add.CreateNote
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     private lateinit var noteAdapter: NoteAdapter
+
+    companion object{
+        lateinit var noteDao : NoteDao
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,36 +33,26 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        var binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
-        val noteAdapter = NoteAdapter(mutableListOf())
+
+//        val noteAdapter = NoteAdapter(noteDao.getNotes())
 
         val rvNotes : RecyclerView = binding.rvNotes
         rvNotes.adapter = noteAdapter
         rvNotes.layoutManager = GridLayoutManager(requireContext(),2)
 
-        val btnAddNote : Button = binding.btnAddNote
-        val etNote : EditText = binding.etNote
+        val btnAddNote : ImageButton = binding.btnAddNote
 
         btnAddNote.setOnClickListener{
-
-            val noteContent = etNote.text.toString()
-
-            if(noteContent.isNotEmpty()){
-                val note = Note(noteAdapter.notes.size, noteContent)
-                noteAdapter.addNote(note)
-                etNote.text.clear()
+            requireActivity().supportFragmentManager.beginTransaction().apply{
+                replace(R.id.fragmentContainerView, CreateNote())
+                commit()
             }
         }
 
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
 
 }

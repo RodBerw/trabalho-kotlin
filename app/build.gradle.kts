@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -55,15 +57,16 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-//    // Java language implementation
-//    implementation ("androidx.sqlite:sqlite:2.3.0")
-//
-//    // Kotlin
-//    implementation ("androidx.sqlite:sqlite-ktx:2.3.0")
-//
-//    // Implementation of the AndroidX SQLite interfaces via the Android framework APIs.
-//    implementation ("androidx.sqlite:sqlite-framework:2.3.0")
-//    implementation ("androidx.room:room-runtime:2.4.3")
-//    implementation ("androidx.room:room-compiler:2.4.3")
-//    implementation ("androidx.room:room-ktx:2.4.3")
+
+    val roomVersion = "2.5.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    // To use Kotlin Symbolic Processing (KSP)
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+
+
 }

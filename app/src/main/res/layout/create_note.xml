@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#00FFFFFF"
     tools:context=".ui.add.CreateNote">
 
     <LinearLayout
@@ -38,8 +39,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInputNewNote"
                 android:layout_width="match_parent"
-                android:layout_height="111dp"
-                android:hint="Write here..." />
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:hint="Write here..."
+                android:maxHeight="111dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
