@@ -22,17 +22,27 @@ import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.notesapp.ui.history.HistoryFragment
 import com.example.notesapp.ui.home.HomeFragment
+import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
 
     private val selectedColor: String = "#4B462C"
     private val nonSelectedColor: String = "#D1C8B7"
 
+    companion object{
+        var database: DatabaseReference = Firebase.database.reference
+        lateinit var notes: MutableList<Note>
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         fun SetNavColors(notesColor:String, historyColor:String){
             binding.btnNotes.setColorFilter(notesColor.toColorInt());

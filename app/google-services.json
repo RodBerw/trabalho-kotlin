@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "958938426056",
+    "project_id": "notesappkotlintrabalho",
+    "storage_bucket": "notesappkotlintrabalho.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958938426056:android:4599142b6248d6036553fd",
+        "android_client_info": {
+          "package_name": "com.example.notesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJgCOGVL6BFF0TcB40skiy7Y8yUk3Grno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,10 +2,10 @@ package com.example.notesapp.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
 
-@Entity(tableName = "notes")
-data class Note(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+@IgnoreExtraProperties data class Note(
+    val id: Int,
     val notation:String
 )

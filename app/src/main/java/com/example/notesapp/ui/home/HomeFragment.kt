@@ -17,15 +17,15 @@ import com.example.notesapp.database.NoteDao
 import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.databinding.FragmentHomeBinding
 import com.example.notesapp.ui.add.CreateNote
+import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 class HomeFragment : Fragment() {
 
 
     private lateinit var noteAdapter: NoteAdapter
 
-    companion object{
-        lateinit var noteDao : NoteDao
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +35,7 @@ class HomeFragment : Fragment() {
 
         var binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-
-
-//        val noteAdapter = NoteAdapter(noteDao.getNotes())
+        val noteAdapter = NoteAdapter()
 
         val rvNotes : RecyclerView = binding.rvNotes
         rvNotes.adapter = noteAdapter

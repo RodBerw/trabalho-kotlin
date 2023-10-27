@@ -10,19 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.notesapp.database.Note
 import com.example.notesapp.database.NoteDatabase
+import com.example.notesapp.ui.home.HomeFragment
+import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class NoteAdapter(
-    var notes: MutableList<Note>,
-) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
-
+class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    var notes = MainActivity.notes
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
 
+        val database = MainActivity.database
 
         return NoteViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -46,7 +49,7 @@ class NoteAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return notes.size
+    fun getNotes(db: DatabaseReference): MutableList<Note>{
+        for
     }
 }
