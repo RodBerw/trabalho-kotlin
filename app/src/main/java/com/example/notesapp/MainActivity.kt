@@ -1,39 +1,26 @@
 package com.example.notesapp
 
+import NoteDatabase
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.graphics.toColorInt
-import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.notesapp.database.Note
-import com.example.notesapp.database.NoteDao
-import com.example.notesapp.database.NoteViewModel
-import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.notesapp.ui.history.HistoryFragment
 import com.example.notesapp.ui.home.HomeFragment
 import com.google.firebase.Firebase
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class MainActivity : AppCompatActivity() {
 
     private val selectedColor: String = "#4B462C"
     private val nonSelectedColor: String = "#D1C8B7"
 
+
     companion object{
-        var database: DatabaseReference = Firebase.database.reference
-        lateinit var notes: MutableList<Note>
+        var notes: MutableList<Note> = mutableListOf()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        var database = NoteDatabase.database
 
 
         fun SetNavColors(notesColor:String, historyColor:String){

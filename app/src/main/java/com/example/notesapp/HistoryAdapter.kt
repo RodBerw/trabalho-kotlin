@@ -13,7 +13,7 @@ import com.google.firebase.firestore.firestore
 import kotlin.math.log
 
 
-class NoteAdapter(val notes:MutableList<Note>) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class HistoryAdapter(val history:MutableList<Note>) : RecyclerView.Adapter<HistoryAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -30,13 +30,13 @@ class NoteAdapter(val notes:MutableList<Note>) : RecyclerView.Adapter<NoteAdapte
     }
 
     override fun getItemCount(): Int {
-        return notes.size
+        return history.size
     }
 
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
 
-        val currentNote = notes[position]
+        val currentNote = history[position]
         holder.itemView.apply {
             val txtNote: TextView = findViewById(R.id.txtNote)
             val itemConstraintLayout: ConstraintLayout = findViewById(R.id.itemNote)
@@ -46,19 +46,11 @@ class NoteAdapter(val notes:MutableList<Note>) : RecyclerView.Adapter<NoteAdapte
 
 
     fun updateData(newNotes: List<Note>) {
-        notes.clear()
-        notes.addAll(newNotes)
+        history.clear()
+        history.addAll(newNotes)
         notifyDataSetChanged()
     }
 
-//    fun getNotes(db: DatabaseReference){
-//        db.child("notes").get().addOnSuccessListener {
-//            resNotes -> if(resNotes != null){
-//            val t: GenericTypeIndicator<MutableList<Note>> = object : GenericTypeIndicator<MutableList<Note>>() {}
-//            notes = resNotes.getValue(t)!!
-//        }
-//        }
-//    }
 
 
 }

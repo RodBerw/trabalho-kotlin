@@ -1,12 +1,5 @@
-package com.example.notesapp.database
+import com.google.firebase.firestore.FirebaseFirestore
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
-
-@Database(
-    entities = [Note::class],
-    version = 1
-)
-abstract class NoteDatabase: RoomDatabase() {
-    abstract val dao: NoteDao
+object NoteDatabase {
+    val database = FirebaseFirestore.getInstance()
 }
